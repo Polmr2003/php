@@ -1,0 +1,54 @@
+/* Menu Pizzas, ofertas */
+h1 {
+    color: #2F2F2F;
+    font-family: Poppins;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 94.8%;
+    /* 28.44px */
+    text-decoration-line: underline;
+}
+
+/* Titulo Pizzas */
+h4 {
+    color: var(--oil-11, #0D0D0D);
+    font-family: DM Sans;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.72px;
+}
+
+/* Precios Pizzas */
+h5 {
+    color: #E47D2B;
+    font-family: DM Sans;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.72px;
+}
+
+/* Layout */
+.layout {
+    display: flex;
+    padding: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    flex: 1 0 0;
+}
+
+/* Ingredientes title */
+.tit_ingrediets {
+    color: var(--oil-11, #0D0D0D);
+    font-family: DM Sans;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.54px;
+}
