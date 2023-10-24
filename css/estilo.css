@@ -1,3 +1,42 @@
+/* ------------------------------------------------- Contenido (Body) de el html ----------------------------------------------------------------------- */
+/* body donde aparece todo */
+body{
+    background: #FDF7EF;
+}
+
+/* ------------------------------------------------- Informacion de el usuario----------------------------------------------------------------------- */
+/* Texto que indica que tiene que introducir el usuario */
+.info_usu {
+    color: #000;
+
+    /* Poppins/Body - 16px */
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 175%;
+    /* 28px */
+    letter-spacing: 0.32px;
+}
+
+/* Input donde pone la informacion el usuario */
+.input_usu {
+    /* Tamaño (display: como se muestra, centrado..) (widht: anchura) (height: altura) */
+    display: flex;
+    width: 120px;
+    height: 10px;
+    padding: 8px 16px;
+    align-items: center;
+    gap: 227px;
+    border-radius: 24px;
+
+    /* Color... */
+    border: 1px solid #E47D2B;
+    background: var(--FFFFFF-Bg-1, #FFF);
+    
+}
+
+/* ------------------------------------------------- Pedido ----------------------------------------------------------------------- */
 /* Menu Pizzas, ofertas */
 h1 {
     color: #2F2F2F;
@@ -42,8 +81,8 @@ h5 {
     flex: 1 0 0;
 }
 
-/* Ingredientes title */
-.tit_ingrediets {
+/* titulo de los ingredientes, masa especial */
+.tit_info {
     color: var(--oil-11, #0D0D0D);
     font-family: DM Sans;
     font-size: 18px;
@@ -51,4 +90,47 @@ h5 {
     font-weight: 500;
     line-height: normal;
     letter-spacing: -0.54px;
+}
+
+/* fondo Buscador */
+.fondo_bus {
+    border-radius: 30px;
+    background: rgba(246, 216, 178, 0.45);
+    box-shadow: 0px 12px 40px -16px rgba(0, 0, 0, 0.10);
+}
+
+/* Ingredientes extra */
+.ingredientes {
+    text-align: left;
+}
+
+/* Div con la informacion de las pizzas */
+.div_informacion {
+    margin: 10px;
+    text-align: center;
+}
+
+/* Boton de pedir pizza */
+.my_Btn {
+    /* Tamaño (widht: anchura) (height: altura)*/
+    width: 100px;
+    height: 50px;
+
+    /* Color... */
+    border-radius: 84px;
+    background: #2F2F2F;
+    box-shadow: 0px 20px 32px -8px rgba(0, 0, 0, 0.20);
+}
+
+/* Text del boton */
+.txt_my_Btn {
+    /* Tamaño (font-size: tamaño de letra)*/
+    font-size: 15px;
+
+    /* Color... */
+    color: #F4ECE1;
+    font-family: Poppins;
+    font-style: normal;
+    line-height: 94.8%;
+    /* 18.96px */
 }
