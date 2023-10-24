@@ -1,14 +1,59 @@
 <?php
-// importamos las classes con los metodos
+// importamos las classes con las funciones
 require_once 'Funtions.php';
 
+//variables
+$_POST['nombre'] = "";
+$_POST['apellidos'] = "";
+$_POST['telefono'] = "";
+$_POST['direccion'] = "";
+
+$nombre;
+$apellidos;
+$telefono;
+$direccion;
+
+//funciones
 myHeader();
 myMenu();;
-//variables
 
-//metodos
+/* ------------------------------------------- Comprovaciones de las variables---------------------------------------------------------------- */
+if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['direccion'])) {
+    // Miramos que no tenga contenido html en los campos de el usuario
+    $nombre = htmlspecialchars($_POST['nombre']); // htmlspecialchars evita que el usuario ponga codigo html, convierte la cadena que ponga el usuario en html
+    $apellidos = htmlspecialchars($_POST['apellidos']); // htmlspecialchars evita que el usuario ponga codigo html, convierte la cadena que ponga el usuario en html
+    $telefono = htmlspecialchars($_POST['telefono']); // htmlspecialchars evita que el usuario ponga codigo html, convierte la cadena que ponga el usuario en html
+    $direccion = htmlspecialchars($_POST['direccion']); // htmlspecialchars evita que el usuario ponga codigo html, convierte la cadena que ponga el usuario en html
+
+    //------------------- Sanitizamos los datos -------------------
+    //sanitizamos nombre
+    if (filter_has_var(INPUT_POST, 'nombre')) { // filter_has_var para comprovar que esa variable viene del metodo post
+        //si viene del metodo post
+        $nombre = filter_var($_POST['nombre'], FILTER_SANITIZE_STRING); // filter_var  para sanitizar la variable, filter_var( variable, metodo para filtrar )
+    }
+
+    //sanitizamos apellidos
+    if (filter_has_var(INPUT_POST, 'apellidos')) { // filter_has_var para comprovar que esa variable viene del metodo post
+        //si viene del metodo post
+        $apellidos = filter_var($_POST['apellidos'], FILTER_SANITIZE_STRING); // filter_var  para sanitizar la variable, filter_var( variable, metodo para filtrar )
+    }
+
+    //sanitizamos telefono
+    if (filter_has_var(INPUT_POST, 'telefono')) { // filter_has_var para comprovar que esa variable viene del metodo post
+        //si viene del metodo post
+        $telefono = filter_var($_POST['telefono'], FILTER_SANITIZE_NUMBER_INT); // filter_var  para sanitizar la variable, filter_var( variable, metodo para filtrar )
+    }
+
+    //sanitizamos direccion
+    if (filter_has_var(INPUT_POST, 'direccion')) { // filter_has_var para comprovar que esa variable viene del metodo post
+        //si viene del metodo post
+        $direccion = filter_var($_POST['direccion'], FILTER_SANITIZE_NUMBER_INT); // filter_var  para sanitizar la variable, filter_var( variable, metodo para filtrar )
+    }
+}
+
 ?>
 
+<!--------------------------------------------------- HTML ------------------------------------------------------------------------->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,31 +65,32 @@ myMenu();;
 </head>
 
 <body>
+    <!-- Formulario -->
     <form action="" method="post">
         <!-- Datos usuario -->
         <h1>Datos usuario</h1>
 
         <!-- Nombre de el usuario -->
         <label for="nombre" class="info_usu">Nombre:</label>
-        <input type="text" class="input_usu" id="nombre">
+        <input type="text" class="input_usu" id="nombre" required>
         <!-- Mostrar si las creedenciales son válidas de nombre-->
         <span style="color:red" class="Error_nom_usu" id="validacion_nombre"></span><br>
 
         <!-- Apellidos de el usuario -->
         <label for="apellidos" class="info_usu">Apellidos:</label>
-        <input type="text" class="input_usu" id="Apellidos">
+        <input type="text" class="input_usu" id="Apellidos" required>
         <!-- Mostrar si las creedenciales son válidas de nombre-->
         <span style="color:red" class="form-text" id="validacion_Apellidos"></span><br>
 
         <!-- Telefono de el usuario -->
         <label for="Apellidos" class="info_usu">Telefono:</label>
-        <input type="text" class="input_usu" id="Telefono">
+        <input type="text" class="input_usu" id="Telefono" required>
         <!-- Mostrar si las creedenciales son válidas de nombre-->
         <span style="color:red" class="form-text" id="validacion_Telefono"></span><br>
 
         <!-- Direccion de el usuario -->
         <label for="Apellidos" class="info_usu">Direccion:</label>
-        <input type="text" class="input_usu" id="Direccion">
+        <input type="text" class="input_usu" id="Direccion" required>
         <!-- Mostrar si las creedenciales son válidas de nombre-->
         <span style="color:red" class="form-text" id="validacion_Direccion"></span><br>
 

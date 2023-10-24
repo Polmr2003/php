@@ -2,7 +2,6 @@
 //_______________funciones______________________________
 //------------------------------------------------------
 
-
 function myHeader(){
     $head = <<<CABECERA
     <!DOCTYPE html>
@@ -44,6 +43,21 @@ function myMenu(){
  */
 function println($something): string{
     return "$something\n";
+};
+
+
+function start_session(){
+    return session_start();
+};
+
+function remove_session(){
+    // destroy the session
+    return session_destroy();
+};
+
+function remove_var_session(){
+    // remove all session variables
+    return session_unset();
 };
 
 ?>
