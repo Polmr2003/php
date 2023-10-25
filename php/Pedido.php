@@ -14,7 +14,6 @@ $telefono;
 $direccion;
 
 //funciones
-myHeader();
 myMenu();;
 
 /* ------------------------------------------- Comprovaciones de las variables---------------------------------------------------------------- */
@@ -25,72 +24,83 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
     $telefono = htmlspecialchars($_POST['telefono']); // htmlspecialchars evita que el usuario ponga codigo html, convierte la cadena que ponga el usuario en html
     $direccion = htmlspecialchars($_POST['direccion']); // htmlspecialchars evita que el usuario ponga codigo html, convierte la cadena que ponga el usuario en html
 
-    //------------------- Sanitizamos los datos -------------------
-    //sanitizamos nombre
+    // ------------------- Sanitizamos los datos -------------------
+    // Sanitizamos nombre
     if (filter_has_var(INPUT_POST, 'nombre')) { // filter_has_var para comprovar que esa variable viene del metodo post
         //si viene del metodo post
         $nombre = filter_var($_POST['nombre'], FILTER_SANITIZE_STRING); // filter_var  para sanitizar la variable, filter_var( variable, metodo para filtrar )
     }
 
-    //sanitizamos apellidos
+    // Sanitizamos apellidos
     if (filter_has_var(INPUT_POST, 'apellidos')) { // filter_has_var para comprovar que esa variable viene del metodo post
         //si viene del metodo post
         $apellidos = filter_var($_POST['apellidos'], FILTER_SANITIZE_STRING); // filter_var  para sanitizar la variable, filter_var( variable, metodo para filtrar )
     }
 
-    //sanitizamos telefono
+    // Sanitizamos telefono
     if (filter_has_var(INPUT_POST, 'telefono')) { // filter_has_var para comprovar que esa variable viene del metodo post
         //si viene del metodo post
         $telefono = filter_var($_POST['telefono'], FILTER_SANITIZE_NUMBER_INT); // filter_var  para sanitizar la variable, filter_var( variable, metodo para filtrar )
     }
 
-    //sanitizamos direccion
+    // Sanitizamos direccion
     if (filter_has_var(INPUT_POST, 'direccion')) { // filter_has_var para comprovar que esa variable viene del metodo post
         //si viene del metodo post
         $direccion = filter_var($_POST['direccion'], FILTER_SANITIZE_NUMBER_INT); // filter_var  para sanitizar la variable, filter_var( variable, metodo para filtrar )
     }
+
+    // ------------------- Validar los datos -------------------
+    // Validamos nombre
+    
+    // Validamos apellidos
+
+    // Validamos telefono
+
+    // Validamos direccion
+
+
 }
 
 ?>
 
-<!--------------------------------------------------- HTML ------------------------------------------------------------------------->
+<!-- ------------------------------------------------- HTML ----------------------------------------------------------------------- -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carta</title>
+    <title>Pizzeria</title>
     <link rel="stylesheet" type="text/css" href="../css/estilo.css" />
 </head>
 
 <body>
     <!-- Formulario -->
-    <form action="" method="post">
+    <form action="./Tiket.php" method="post">
         <!-- Datos usuario -->
         <h1>Datos usuario</h1>
 
         <!-- Nombre de el usuario -->
         <label for="nombre" class="info_usu">Nombre:</label>
-        <input type="text" class="input_usu" id="nombre" required>
+        <input type="text" class="input_usu" id="nombre" name="nombre" required>
         <!-- Mostrar si las creedenciales son válidas de nombre-->
         <span style="color:red" class="Error_nom_usu" id="validacion_nombre"></span><br>
 
         <!-- Apellidos de el usuario -->
         <label for="apellidos" class="info_usu">Apellidos:</label>
-        <input type="text" class="input_usu" id="Apellidos" required>
+        <input type="text" class="input_usu" id="Apellidos" name="apellidos" required>
         <!-- Mostrar si las creedenciales son válidas de nombre-->
         <span style="color:red" class="form-text" id="validacion_Apellidos"></span><br>
 
         <!-- Telefono de el usuario -->
         <label for="Apellidos" class="info_usu">Telefono:</label>
-        <input type="text" class="input_usu" id="Telefono" required>
+        <input type="text" class="input_usu" id="Telefono" name="telefono" required>
         <!-- Mostrar si las creedenciales son válidas de nombre-->
         <span style="color:red" class="form-text" id="validacion_Telefono"></span><br>
 
         <!-- Direccion de el usuario -->
         <label for="Apellidos" class="info_usu">Direccion:</label>
-        <input type="text" class="input_usu" id="Direccion" required>
+        <input type="text" class="input_usu" id="Direccion" name="direccion" required>
         <!-- Mostrar si las creedenciales son válidas de nombre-->
         <span style="color:red" class="form-text" id="validacion_Direccion"></span><br>
 
@@ -113,11 +123,11 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
                 <!-- Formulario -->
                 <h5>precio 15€</h5>
 
-                <label for="num_pizzas" class="form-label"></label>
-                <input type="number" class="form-control" id="num_pizzas">
+                <label for="num_pizzas_mar" class="form-label"></label>
+                <input type="number" class="form-control" id="num_pizzas_mar" name="num_pizzas_mar">
                 <br>
                 <!-- Select con los tamaños -->
-                <select name="tamaño_pizza" id="tamaño_pizza" class="form-select" aria-label="Default select example" required>
+                <select name="tamaño_pizza_mar" id="tamaño_pizza_mar" class="form-select" aria-label="Default select example" required>
                     <option selected>Tamaño</option>
                     <option>mediana</option>
                     <option>familiar</option>
@@ -128,18 +138,18 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
                     <h6 class="tit_info"> Ingredientes:</h6>
                 </u>
                 <p class="ingredientes">
-                    <input type="checkbox" name="" value="añadir">+ jamon<br>
-                    <input type="checkbox" name="" value="añadir">+ bacon<br>
-                    <input type="checkbox" name="" value="añadir">+ albaha<br>
-                    <input type="checkbox" name="" value="añadir">+ peperoni<br>
+                    <input type="checkbox" name="ingredientes_mar" value="añadir">+ jamon (0,25€)<br>
+                    <input type="checkbox" name="ingredientes_mar" value="añadir">+ bacon (0,25€)<br>
+                    <input type="checkbox" name="ingredientes_mar" value="añadir">+ albaha (0,25€)<br>
+                    <input type="checkbox" name="ingredientes_mar" value="añadir">+ peperoni (0,25€)<br>
                 </p>
 
                 <!-- Tipo masa -->
                 <u>
                     <h6 class="tit_info">Masa especial:</h6>
                 </u>
-                <input type="radio" name="masa" value="masa_especial">Con gluten
-                <input type="radio" name="masa" value="masa_especial">Sin gluten<br>
+                <input type="radio" name="con_gluten_mar" value="masa_especial">Con gluten
+                <input type="radio" name="sin_gluten_mar" value="masa_especial">Sin gluten<br>
 
                 <!-- Cerramos el contenedor con la informacion de la pizza margarita -->
             </div>
@@ -157,12 +167,12 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
                 <!-- Formulario -->
                 <h5>precio 17€</h5>
 
-                <label for="num_pizzas" class="form-label"></label>
-                <input type="number" class="form-control" id="num_pizzas">
+                <label for="num_pizzas_car" class="form-label"></label>
+                <input type="number" class="form-control" id="num_pizzas_car"  name="num_pizzas_car">
                 <br>
 
                 <!-- Select con los tamaños -->
-                <select name="tamaño_pizza" id="tamaño_pizza" class="form-select" aria-label="Default select example" required>
+                <select name="tamaño_pizza" id="tamaño_pizza_car" class="form-select" aria-label="Default select example" required>
                     <option selected>Tamaño</option>
                     <option>mediana</option>
                     <option>familiar</option>
@@ -174,18 +184,18 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
                 </u>
 
                 <p class="ingredientes">
-                    <input type="checkbox" name="" value="añadir">+ Atun<br>
-                    <input type="checkbox" name="" value="añadir">+ Bacon<br>
-                    <input type="checkbox" name="" value="añadir">+ Aceitunas<br>
-                    <input type="checkbox" name="" value="añadir">+ Pimiento<br>
+                    <input type="checkbox" name="ingredientes_car" value="añadir">+ Atun (0,25€)<br>
+                    <input type="checkbox" name="ingredientes_car" value="añadir">+ Bacon (0,25€)<br>
+                    <input type="checkbox" name="ingredientes_car" value="añadir">+ Aceitunas (0,25€)<br>
+                    <input type="checkbox" name="ingredientes_car" value="añadir">+ Pimiento (0,25€)<br>
                 </p>
 
                 <!-- Tipo masa -->
                 <u>
                     <h6 class="tit_info">Masa especial:</h6>
                 </u>
-                <input type="radio" name="masa" value="masa_especial">Con gluten
-                <input type="radio" name="masa" value="masa_especial">Sin gluten<br>
+                <input type="radio" name="sin_gluten_car" value="masa_especial">Con gluten
+                <input type="radio" name="con_gluten_car" value="masa_especial">Sin gluten<br>
 
                 <!-- Cerramos el contenedor con la informacion de la pizza carbonara -->
             </div>
@@ -199,11 +209,11 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
                 <!-- Formulario -->
                 <h5>precio 13€</h5>
 
-                <label for="num_pizzas" class="form-label"></label>
-                <input type="number" class="form-control" id="num_pizzas">
+                <label for="num_pizzas_bar" class="form-label"></label>
+                <input type="number" class="form-control" id="num_pizzas_bar" name="num_pizzas_bar">
                 <br>
                 <!-- Select con los tamaños -->
-                <select name="tamaño_pizza" id="tamaño_pizza" class="form-select" aria-label="Default select example" required>
+                <select name="tamaño_pizza" id="tamaño_pizza_car" class="form-select" aria-label="Default select example" required>
                     <option selected>Tamaño</option>
                     <option>mediana</option>
                     <option>familiar</option>
@@ -215,18 +225,18 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
                 </u>
 
                 <p class="ingredientes">
-                    <input type="checkbox" name="" value="añadir">+ Queso<br>
-                    <input type="checkbox" name="" value="añadir">+ Carne<br>
-                    <input type="checkbox" name="" value="añadir">+ Salsa<br>
-                    <input type="checkbox" name="" value="añadir">+ pimiento verde<br>
+                    <input type="checkbox" name="ingredientes_bar" value="añadir">+ Queso (0,25€)<br>
+                    <input type="checkbox" name="ingredientes_bar" value="añadir">+ Carne (0,25€)<br>
+                    <input type="checkbox" name="ingredientes_bar" value="añadir">+ Salsa (0,25€)<br>
+                    <input type="checkbox" name="ingredientes_bar" value="añadir">+ pimiento verde (0,25€)<br>
                 </p>
 
                 <!-- Tipo masa -->
                 <u>
                     <h6 class="tit_info">Masa especial:</h6>
                 </u>
-                <input type="radio" name="masa" value="masa_especial">Con gluten
-                <input type="radio" name="masa" value="masa_especial">Sin gluten<br>
+                <input type="radio" name="masa" value="con_gluten_bar">Con gluten
+                <input type="radio" name="masa" value="sin_gluten_bar">Sin gluten<br>
 
                 <!-- Cerramos el contenedor con la informacion de la pizza barbacoa -->
             </div>
@@ -240,11 +250,11 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
                 <!-- Formulario -->
                 <h5>precio 20€</h5>
 
-                <label for="num_pizzas" class="form-label"></label>
-                <input type="number" class="form-control" id="num_pizzas">
+                <label for="num_pizzas_que" class="form-label"></label>
+                <input type="number" class="form-control" id="num_pizzas_que" name="num_pizzas_que">
                 <br>
                 <!-- Select con los tamaños -->
-                <select name="tamaño_pizza" id="tamaño_pizza" class="form-select" aria-label="Default select example" required>
+                <select name="tamaño_pizza_que" id="tamaño_pizza_que" class="form-select" aria-label="Default select example" required>
                     <option selected>Tamaño</option>
                     <option>mediana</option>
                     <option>familiar</option>
@@ -256,18 +266,18 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
                 </u>
 
                 <p class="ingredientes">
-                    <input type="checkbox" name="" value="añadir">+ Jamon<br>
-                    <input type="checkbox" name="" value="añadir">+ Bacon<br>
-                    <input type="checkbox" name="" value="añadir">+ caebolla caramelizada<br>
-                    <input type="checkbox" name="" value="añadir">+ miel<br>
+                    <input type="checkbox" name="ingredientes_que" value="añadir">+ Jamon (0,25€)<br>
+                    <input type="checkbox" name="ingredientes_que" value="añadir">+ Bacon (0,25€)<br>
+                    <input type="checkbox" name="ingredientes_que" value="añadir">+ caebolla caramelizada (0,25€)<br>
+                    <input type="checkbox" name="ingredientes_que" value="añadir">+ miel (0,25€)<br>
                 </p>
 
                 <!-- Tipo masa -->
                 <u>
                     <h6 class="tit_info">Masa especial:</h6>
                 </u>
-                <input type="radio" name="masa" value="masa_especial">Con gluten
-                <input type="radio" name="masa" value="masa_especial">Sin gluten<br>
+                <input type="radio" name="con_gluten_que" value="masa_especial">Con gluten
+                <input type="radio" name="sin_gluten_que" value="masa_especial">Sin gluten<br>
 
                 <!-- Cerramos el contenedor con la informacion de la pizza 4 quesos -->
             </div>
@@ -275,29 +285,35 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
             <!-- Cerramos el display flex -->
         </div>
 
+
+
+
         <!-- Ofertas -->
         <h1>Ofertas</h1>
 
         <!-- Bebida + pizza familiar -->
         <label for="Bebida_+_pizza" class="form-label">Pizza carbonara (familiar) + bebida a elegir:</label>
-        <input type="checkbox" class="form-control" id="Bebida_+_pizza">
+        <input type="checkbox" class="form-control" id="Bebida_+_pizza" name="Bebida_+_pizza" >
         <!-- Mostrar si las creedenciales son válidas de nombre-->
         <span style="color:red" class="form-text" id="Bebida_+_pizza"></span><br>
 
 
         <!-- pizza + pizza  -->
         <label for="pizza_+_pizza" class="form-label">Pizza margarita (individual) + Pizza barbacoa (individual):</label>
-        <input type="checkbox" class="form-control" id="pizza+_pizza">
+        <input type="checkbox" class="form-control" id="pizza+_pizza" name="pizza_+_pizza">
         <!-- Mostrar si las creedenciales son válidas de nombre-->
         <span style="color:red" class="form-text" id="pizza+_pizza"></span><br>
 
 
         <!-- media + normal -->
         <label for="media_+_normal" class="form-label">Pizza 4 quesos (mediana) + Pizza carbonara (individual)</label>
-        <input type="checkbox" class="form-control" id="media_+ _normal">
+        <input type="checkbox" class="form-control" id="media_+_normal" name="media_+_normal">
         <!-- Mostrar si las creedenciales son válidas de nombre-->
-        <span style="color:red" class="form-text" id="media_+ _normal"></span><br><br>
+        <span style="color:red" class="form-text" id="media_+_normal"></span><br><br>
 
+
+
+        
         <!-- Boton -->
         <button class="my_Btn">
             <p class="txt_my_Btn">Comprar</p>
