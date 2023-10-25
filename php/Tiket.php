@@ -19,13 +19,12 @@
         $telefono = $_POST["telefono"];
         $direccion = $_POST["direccion"];
 
-
         /* ------------------------------------------- Calculamos el dinero total del pedido ---------------------------------------------------------------- */
         // variable para guardar el dinero del pedido
         $total = 0;
 
         /*------------------------ Pizza margarita ------------------------ */
-        if (isset($_POST["num_pizzas_mar"]) && isset($_POST["tamaño_pizza_mar"])) {
+        if (isset($_POST["num_pizzas_mar"]) && isset($_POST["tamaño_pizza_mar"]) && !($_POST["num_pizzas_mar"] <= 0)) {
             //variable con el numero de las pizzas
             $num_pizzas_mar = intval($_POST["num_pizzas_mar"]);
 
@@ -47,7 +46,7 @@
         }
 
         /*------------------------ Pizza carbonara ------------------------ */
-        if (isset($_POST["num_pizzas_car"]) && isset($_POST["tamaño_pizza_car"])) {
+        if (isset($_POST["num_pizzas_car"]) && isset($_POST["tamaño_pizza_car"]) && !($_POST["num_pizzas_car"] <= 0)) {
             //variable con el numero de las pizzas
             $num_pizzas_car = intval($_POST["num_pizzas_car"]);
 
@@ -55,7 +54,7 @@
             $tamaño_pizza_car = $_POST["tamaño_pizza_car"];
 
             // variable con el precio de las pizzas
-            $precio_pizza_car = 0; 
+            $precio_pizza_car = 0;
 
             //
             if ($tamaño_pizza_car === "mediana") {
@@ -73,25 +72,26 @@
         }
 
         /*------------------------ Pizza barbacoa ------------------------ */
-        if (isset($_POST["num_pizzas_bar"]) && isset($_POST["tamaño_pizza_bar"])) {
-            //variable con el numero de las pizzas
+        // Si estan definidas las variables de la pizza barbacoa i no esta vacio 
+        if (isset($_POST["num_pizzas_bar"]) && isset($_POST["tamaño_pizza_bar"]) && !($_POST["num_pizzas_bar"] <= 0)) {
+            //variable con el numero de la pizza
             $num_pizzas_bar = intval($_POST["num_pizzas_bar"]);
 
-            //variable con el tamaña de las pizzas
+            //variable con el tamaña de la pizza
             $tamaño_pizza_bar = $_POST["tamaño_pizza_bar"];
 
-            // variable con el precio de las pizzas
-            $precio_pizza_bar = 0; // You should set the actual prices for different pizzas
+            // variable para guardar el precio de la pizzza dependiendo de la tamaño
+            $precio_pizza_bar = 0;
 
-            //
+            // miramos el tamaño de la pizza
             if ($tamaño_pizza_bar === "mediana") {
-                //
-                $precio_pizza_bar = 15;
+                // si el tamaño de la pizza es mediana
+                $precio_pizza_bar = 15; // el precio sera de 15 €
             } elseif ($tamaño_pizza_bar === "familiar") {
-                //
+                // si el tamaño de la pizza es familiar
                 $precio_pizza_bar = 17;
             } elseif ($tamaño_pizza_bar === "individual") {
-                //
+                // si el tamaño de la pizza es individual
                 $precio_pizza_bar = 13;
             }
 
@@ -100,7 +100,7 @@
         }
 
         /*------------------------ Pizza 4 quesos ------------------------ */
-        if (isset($_POST["num_pizzas_que"]) && isset($_POST["tamaño_pizza_que"])) {
+        if (isset($_POST["num_pizzas_que"]) && isset($_POST["tamaño_pizza_que"]) && !($_POST["num_pizzas_que"] <= 0)) {
             //variable con el numero de las pizzas
             $num_pizzas_que = intval($_POST["num_pizzas_que"]);
 
@@ -127,30 +127,31 @@
 
         /*------------------------ Ofertas ------------------------ */
 
-        // Check for additional product checkboxes and update the total accordingly
+        // Si an seleccionado la oferta de pizza + bebida
         if (isset($_POST["Bebida_+_pizza"])) {
-            // Add the price of the pizza and the selected beverage
-            $total += 3; // Assuming the beverage costs 3 euros
+            // Sumamos el precio de la oferta
+            $total += 3;
         }
 
-
+        // Si an seleccionado la oferta de pizza + pizza
         if (isset($_POST["pizza+_pizza"])) {
-            // Add the prices of two individual pizzas
-            $total += 15; // Adjust the price as needed
+            // Sumamos el precio de la oferta
+            $total += 15;
         }
 
 
+        // Si an seleccionado la oferta de mediana + normal
         if (isset($_POST["media_+_normal"])) {
-            // Add the prices of two pizzas
-            $total += 18; // Adjust the price as needed
+            // Sumamos el precio de la oferta
+            $total += 18;
         }
 
 
-        // Calculate VAT (Assuming a 21% VAT rate)
+        // Calculate el iva de el total (IVA: 21%)
         $iva = 0.21 * $total;
 
 
-        // Calculate the final total with VAT
+        // Calculamos el precio total sumando el pedido mas iva
         $total_con_iva = $total + $iva;
     }
     ?>
@@ -173,22 +174,22 @@
         /*------------------------ Pizzas ------------------------ */
 
         // Si an pedido una pizza margarita mostramos, la cantidad i el tamaño
-        if (isset($_POST["num_pizzas_mar"]) && isset($_POST["tamaño_pizza_mar"])) {
+        if (isset($_POST["num_pizzas_mar"]) && isset($_POST["tamaño_pizza_mar"]) && !($_POST["num_pizzas_mar"] <= 0)) {
             echo "<li> $num_pizzas_mar Pizza margarita $tamaño_pizza_mar</li>";
         }
 
         // Si an pedido una pizza carbonara mostramos, la cantidad i el tamaño
-        if (isset($_POST["num_pizzas_car"]) && isset($_POST["tamaño_pizza_car"])) {
+        if (isset($_POST["num_pizzas_car"]) && isset($_POST["tamaño_pizza_car"]) && !($_POST["num_pizzas_car"] <= 0)) {
             echo "<li> $num_pizzas_car Pizza carbonara $tamaño_pizza_car</li>";
         }
 
         // Si an pedido una pizza barbacoa mostramos, la cantidad i el tamaño
-        if (isset($_POST["num_pizzas_bar"]) && isset($_POST["tamaño_pizza_bar"])) {
+        if (isset($_POST["num_pizzas_bar"]) && isset($_POST["tamaño_pizza_bar"]) && !($_POST["num_pizzas_bar"] <= 0)) {
             echo "<li> $num_pizzas_bar Pizza barbacoa $tamaño_pizza_bar</li>";
         }
 
         // Si an pedido una pizza 4 quesos mostramos, la cantidad i el tamaño
-        if (isset($_POST["num_pizzas_que"]) && isset($_POST["tamaño_pizza_que"])) {
+        if (isset($_POST["num_pizzas_que"]) && isset($_POST["tamaño_pizza_que"]) && !($_POST["num_pizzas_que"] <= 0)) {
             echo "<li> $num_pizzas_que Pizza 4 quesos $tamaño_pizza_que</li>";
         }
 
@@ -200,7 +201,7 @@
         }
 
         // Si an pedido una pizza barbacoa mostramos, la cantidad i el tamaño
-        if (isset($_POST["pizza+_pizza"])) {
+        if (isset($_POST["pizza_+_pizza"])) {
             echo "<li>Pizza Margarita (individual) + Pizza Barbacoa (individual)</li>";
         }
 

@@ -14,7 +14,7 @@ $telefono;
 $direccion;
 
 //funciones
-myMenu();;
+
 
 /* ------------------------------------------- Comprovaciones de las variables---------------------------------------------------------------- */
 if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['direccion'])) {
@@ -51,7 +51,7 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
 
     // ------------------- Validar los datos -------------------
     // Validamos nombre
-    
+
     // Validamos apellidos
 
     // Validamos telefono
@@ -168,11 +168,11 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
                 <h5>precio 17€</h5>
 
                 <label for="num_pizzas_car" class="form-label"></label>
-                <input type="number" class="form-control" id="num_pizzas_car"  name="num_pizzas_car">
+                <input type="number" class="form-control" id="num_pizzas_car" name="num_pizzas_car">
                 <br>
 
                 <!-- Select con los tamaños -->
-                <select name="tamaño_pizza" id="tamaño_pizza_car" class="form-select" aria-label="Default select example" required>
+                <select name="tamaño_pizza_car" id="tamaño_pizza_car" class="form-select" aria-label="Default select example" required>
                     <option selected>Tamaño</option>
                     <option>mediana</option>
                     <option>familiar</option>
@@ -213,7 +213,7 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
                 <input type="number" class="form-control" id="num_pizzas_bar" name="num_pizzas_bar">
                 <br>
                 <!-- Select con los tamaños -->
-                <select name="tamaño_pizza" id="tamaño_pizza_car" class="form-select" aria-label="Default select example" required>
+                <select name="tamaño_pizza_bar" id="tamaño_pizza_car" class="form-select" aria-label="Default select example" required>
                     <option selected>Tamaño</option>
                     <option>mediana</option>
                     <option>familiar</option>
@@ -293,7 +293,7 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
 
         <!-- Bebida + pizza familiar -->
         <label for="Bebida_+_pizza" class="form-label">Pizza carbonara (familiar) + bebida a elegir:</label>
-        <input type="checkbox" class="form-control" id="Bebida_+_pizza" name="Bebida_+_pizza" >
+        <input type="checkbox" class="form-control" id="Bebida_+_pizza" name="Bebida_+_pizza">
         <!-- Mostrar si las creedenciales son válidas de nombre-->
         <span style="color:red" class="form-text" id="Bebida_+_pizza"></span><br>
 
@@ -302,7 +302,7 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
         <label for="pizza_+_pizza" class="form-label">Pizza margarita (individual) + Pizza barbacoa (individual):</label>
         <input type="checkbox" class="form-control" id="pizza+_pizza" name="pizza_+_pizza">
         <!-- Mostrar si las creedenciales son válidas de nombre-->
-        <span style="color:red" class="form-text" id="pizza+_pizza"></span><br>
+        <span style="color:red" class="form-text" id="pizza_+_pizza"></span><br>
 
 
         <!-- media + normal -->
@@ -313,7 +313,7 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
 
 
 
-        
+
         <!-- Boton -->
         <button class="my_Btn">
             <p class="txt_my_Btn">Comprar</p>
