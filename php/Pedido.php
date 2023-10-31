@@ -2,63 +2,91 @@
 // importamos las classes con las funciones
 require_once 'Funtions.php';
 
+myMenu();
+
+
 //variables
 $_POST['nombre'] = "";
 $_POST['apellidos'] = "";
 $_POST['telefono'] = "";
 $_POST['direccion'] = "";
+$_POST['correo'] = "";
 
 $nombre;
 $apellidos;
 $telefono;
 $direccion;
+$correo_electronico;
 
-//funciones
 
 
-/* ------------------------------------------- Comprovaciones de las variables---------------------------------------------------------------- */
-if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['direccion'])) {
+/* ------------------------------------------- Comprobaciones de las variables---------------------------------------------------------------- */
+if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['direccion'], $_POST['correo'])) {
     // Miramos que no tenga contenido html en los campos de el usuario
     $nombre = htmlspecialchars($_POST['nombre']); // htmlspecialchars evita que el usuario ponga codigo html, convierte la cadena que ponga el usuario en html
     $apellidos = htmlspecialchars($_POST['apellidos']); // htmlspecialchars evita que el usuario ponga codigo html, convierte la cadena que ponga el usuario en html
     $telefono = htmlspecialchars($_POST['telefono']); // htmlspecialchars evita que el usuario ponga codigo html, convierte la cadena que ponga el usuario en html
     $direccion = htmlspecialchars($_POST['direccion']); // htmlspecialchars evita que el usuario ponga codigo html, convierte la cadena que ponga el usuario en html
+    $correo_electronico = htmlspecialchars($_POST['direccion']); // htmlspecialchars evita que el usuario ponga codigo html, convierte la cadena que ponga el usuario en html
 
-    // ------------------- Sanitizamos los datos -------------------
-    // Sanitizamos nombre
-    if (filter_has_var(INPUT_POST, 'nombre')) { // filter_has_var para comprovar que esa variable viene del metodo post
-        //si viene del metodo post
-        $nombre = filter_var($_POST['nombre'], FILTER_SANITIZE_STRING); // filter_var  para sanitizar la variable, filter_var( variable, metodo para filtrar )
-    }
 
-    // Sanitizamos apellidos
-    if (filter_has_var(INPUT_POST, 'apellidos')) { // filter_has_var para comprovar que esa variable viene del metodo post
-        //si viene del metodo post
-        $apellidos = filter_var($_POST['apellidos'], FILTER_SANITIZE_STRING); // filter_var  para sanitizar la variable, filter_var( variable, metodo para filtrar )
-    }
-
-    // Sanitizamos telefono
-    if (filter_has_var(INPUT_POST, 'telefono')) { // filter_has_var para comprovar que esa variable viene del metodo post
-        //si viene del metodo post
-        $telefono = filter_var($_POST['telefono'], FILTER_SANITIZE_NUMBER_INT); // filter_var  para sanitizar la variable, filter_var( variable, metodo para filtrar )
-    }
-
-    // Sanitizamos direccion
-    if (filter_has_var(INPUT_POST, 'direccion')) { // filter_has_var para comprovar que esa variable viene del metodo post
-        //si viene del metodo post
-        $direccion = filter_var($_POST['direccion'], FILTER_SANITIZE_NUMBER_INT); // filter_var  para sanitizar la variable, filter_var( variable, metodo para filtrar )
-    }
 
     // ------------------- Validar los datos -------------------
-    // Validamos nombre
+    /**
+     * Validate
+     * @param array $data - datos de el formulario
+     * @param array $fields - requisitos de los campos
+     * @param array $messages - mensajes de error
+     * @return array
+     */
+    function validate(array $data, array $fields, array $messages = []): array
+    {
+        // Split the array by a separator, trim each element
+        // and return the array
+        $split = fn ($str, $separator) => array_map('trim', explode($separator, $str));
 
-    // Validamos apellidos
+        // get the message rules
+        $rule_messages = array_filter($messages, fn ($message) =>  is_string($message));
 
-    // Validamos telefono
+        // overwrite the default message
+        //$validation_errors = array_merge(DEFAULT_VALIDATION_ERRORS, $rule_messages);
 
-    // Validamos direccion
+        $errors = [];
 
+        foreach ($fields as $field => $option) {
 
+            $rules = $split($option, '|');
+
+            foreach ($rules as $rule) {
+                // get rule name params
+                $params = [];
+                // if the rule has parameters e.g., min: 1
+                if (strpos($rule, ':')) {
+                    [$rule_name, $param_str] = $split($rule, ':');
+                    $params = $split($param_str, ',');
+                } else {
+                    $rule_name = trim($rule);
+                }
+                // by convention, the callback should be is_<rule> e.g.,is_required
+                $fn = 'is_' . $rule_name;
+
+                if (is_callable($fn)) {
+                    $pass = $fn($data, $field, ...$params);
+                    if (!$pass) {
+                        // get the error message for a specific field and rule if exists
+                        // otherwise get the error message from the $validation_errors
+                        $errors[$field] = sprintf(
+                           // $messages[$field][$rule_name] ?? $validation_errors[$rule_name],
+                            $field,
+                            ...$params
+                        );
+                    }
+                }
+            }
+        }
+
+        return $errors;
+    }
 }
 
 ?>
@@ -70,44 +98,51 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pizzeria</title>
+    <title>Carta Pizza planet</title>
     <link rel="stylesheet" type="text/css" href="../css/estilo.css" />
+
 </head>
 
 <body>
     <!-- Formulario -->
-    <form action="./Tiket.php" method="post">
+    <form action="./Ticket.php" method="post">
         <!-- Datos usuario -->
         <h1>Datos usuario</h1>
 
-        <!-- Nombre de el usuario -->
+        <!-- Nombre del usuario -->
         <label for="nombre" class="info_usu">Nombre:</label>
         <input type="text" class="input_usu" id="nombre" name="nombre" required>
         <!-- Mostrar si las creedenciales son válidas de nombre-->
         <span style="color:red" class="Error_nom_usu" id="validacion_nombre"></span><br>
 
-        <!-- Apellidos de el usuario -->
+        <!-- Apellidos del usuario -->
         <label for="apellidos" class="info_usu">Apellidos:</label>
         <input type="text" class="input_usu" id="Apellidos" name="apellidos" required>
-        <!-- Mostrar si las creedenciales son válidas de nombre-->
+        <!-- Mostrar si las creedenciales son válidas de apellidos-->
         <span style="color:red" class="form-text" id="validacion_Apellidos"></span><br>
 
-        <!-- Telefono de el usuario -->
+        <!-- Telefono del usuario -->
         <label for="Apellidos" class="info_usu">Telefono:</label>
         <input type="text" class="input_usu" id="Telefono" name="telefono" required>
-        <!-- Mostrar si las creedenciales son válidas de nombre-->
+        <!-- Mostrar si las creedenciales son válidas de teléfono-->
         <span style="color:red" class="form-text" id="validacion_Telefono"></span><br>
 
-        <!-- Direccion de el usuario -->
+        <!-- Direccion del usuario -->
         <label for="Apellidos" class="info_usu">Direccion:</label>
         <input type="text" class="input_usu" id="Direccion" name="direccion" required>
-        <!-- Mostrar si las creedenciales son válidas de nombre-->
+        <!-- Mostrar si las creedenciales son válidas de dirección-->
+        <span style="color:red" class="form-text" id="validacion_Direccion"></span><br>
+
+        <!-- Correo Electronico del usuario -->
+        <label for="correo" class="info_usu">Correo Electronico:</label>
+        <input type="text" class="input_usu" id="Correo" name="correo" required>
+        <!-- Mostrar si las creedenciales son válidas de correo-->
         <span style="color:red" class="form-text" id="validacion_Direccion"></span><br>
 
 
 
 
-        <!-- Menu de las pizzas -->
+        <!-- Menú de las pizzas -->
         <h1>Menú pizzas</h1>
         <br>
 
@@ -119,6 +154,17 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
 
                 <!-- Titulo de la pizza -->
                 <h4>Pizza margarita</h4>
+
+                <!-- Imagen de la pizza -->
+                <img src="../images/margarita.jpg" width="150px" height="110px">
+
+                <!-- Descripcion -->
+                <p>ingredientes:</p>
+                <ul>
+                    <li>- queso mozzarella</li><br>
+                    <li>- tomate</li><br>
+                    <br>
+                </ul>
 
                 <!-- Formulario -->
                 <h5>precio 15€</h5>
@@ -133,9 +179,9 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
                     <option>familiar</option>
                     <option>individual</option>
                 </select>
-                <!-- Inrgedientes de la pizza -->
+                <!-- Ingredientes extra de la pizza -->
                 <u>
-                    <h6 class="tit_info"> Ingredientes:</h6>
+                    <h6 class="tit_info"> Ingredientes extra:</h6>
                 </u>
                 <p class="ingredientes">
                     <input type="checkbox" name="ingredientes_mar" value="añadir">+ jamon (0,25€)<br>
@@ -148,8 +194,8 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
                 <u>
                     <h6 class="tit_info">Masa especial:</h6>
                 </u>
-                <input type="radio" name="con_gluten_mar" value="masa_especial">Con gluten
-                <input type="radio" name="sin_gluten_mar" value="masa_especial">Sin gluten<br>
+                <input type="radio" name="masa_margarita" value="con_gluten_mar">Con gluten
+                <input type="radio" name="masa_margarita" value="sin_gluten_mar">Sin gluten<br>
 
                 <!-- Cerramos el contenedor con la informacion de la pizza margarita -->
             </div>
@@ -160,9 +206,17 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
                 <!-- Titulo de la pizza -->
                 <h4>Pizza Carbonara</h4>
 
+                <!-- Imagen de la pizza -->
+                <img src="../images/carbonara.jpg" width="150px" height="110px">
+
+
                 <!-- Descripcion -->
-
-
+                <p>ingredientes:</p>
+                <ul>
+                    <li>- champiñón</li><br>
+                    <li>- bacon</li><br>
+                    <li>- salsa carbonara</li><br>
+                </ul>
 
                 <!-- Formulario -->
                 <h5>precio 17€</h5>
@@ -178,9 +232,9 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
                     <option>familiar</option>
                     <option>individual</option>
                 </select>
-                <!-- Inrgedientes de la pizza -->
+                <!-- Ingredientes extra de la pizza -->
                 <u>
-                    <h6 class="tit_info"> Ingredientes:</h6>
+                    <h6 class="tit_info"> Ingredientes extra:</h6>
                 </u>
 
                 <p class="ingredientes">
@@ -194,8 +248,8 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
                 <u>
                     <h6 class="tit_info">Masa especial:</h6>
                 </u>
-                <input type="radio" name="sin_gluten_car" value="masa_especial">Con gluten
-                <input type="radio" name="con_gluten_car" value="masa_especial">Sin gluten<br>
+                <input type="radio" name="masa_carbonara" value="con_gluten_car">Con gluten
+                <input type="radio" name="masa_carbonara" value="sin_gluten_car">Sin gluten<br>
 
                 <!-- Cerramos el contenedor con la informacion de la pizza carbonara -->
             </div>
@@ -205,6 +259,17 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
 
                 <!-- Titulo de la pizza -->
                 <h4>Pizza barbacoa</h4>
+
+                <!-- Imagen de la pizza -->
+                <img src="../images/barbacoa.jpg" width="150px" height="110px">   
+
+                <!-- Descripcion -->
+                <p>ingredientes:</p>
+                <ul>
+                    <li>- pollo</li><br>
+                    <li>- bacon</li><br>
+                    <li>- carne vacuno</li><br>
+                </ul>             
 
                 <!-- Formulario -->
                 <h5>precio 13€</h5>
@@ -219,9 +284,9 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
                     <option>familiar</option>
                     <option>individual</option>
                 </select>
-                <!-- Inrgedientes de la pizza -->
+                <!-- Ingredientes extra de la pizza -->
                 <u>
-                    <h6 class="tit_info"> Ingredientes:</h6>
+                    <h6 class="tit_info"> Ingredientes extra:</h6>
                 </u>
 
                 <p class="ingredientes">
@@ -235,8 +300,8 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
                 <u>
                     <h6 class="tit_info">Masa especial:</h6>
                 </u>
-                <input type="radio" name="masa" value="con_gluten_bar">Con gluten
-                <input type="radio" name="masa" value="sin_gluten_bar">Sin gluten<br>
+                <input type="radio" name="masa_barbacoa" value="con_gluten_bar">Con gluten
+                <input type="radio" name="masa_barbacoa" value="sin_gluten_bar">Sin gluten<br>
 
                 <!-- Cerramos el contenedor con la informacion de la pizza barbacoa -->
             </div>
@@ -246,6 +311,17 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
 
                 <!-- Titulo de la pizza -->
                 <h4>Pizza 4 quesos</h4>
+
+                <!-- Imagen de la pizza -->
+                <img src="../images/4quesos.jpeg" width="150px" height="110px">
+
+                <!-- Descripcion -->
+                <p>ingredientes:</p>
+                <ul>
+                    <li>- salsa tomate</li><br>
+                    <li>- mozzarella, queso azul</li><br>
+                    <li>- emmental, edam</li><br>
+                </ul>
 
                 <!-- Formulario -->
                 <h5>precio 20€</h5>
@@ -260,9 +336,9 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
                     <option>familiar</option>
                     <option>individual</option>
                 </select>
-                <!-- Inrgedientes de la pizza -->
+                <!-- Ingredientes extra de la pizza -->
                 <u>
-                    <h6 class="tit_info"> Ingredientes:</h6>
+                    <h6 class="tit_info"> Ingredientes extra:</h6>
                 </u>
 
                 <p class="ingredientes">
@@ -276,8 +352,8 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
                 <u>
                     <h6 class="tit_info">Masa especial:</h6>
                 </u>
-                <input type="radio" name="con_gluten_que" value="masa_especial">Con gluten
-                <input type="radio" name="sin_gluten_que" value="masa_especial">Sin gluten<br>
+                <input type="radio" name="masa_quesos" value="con_gluten_que">Con gluten
+                <input type="radio" name="masa_quesos" value="sin_gluten_que">Sin gluten<br>
 
                 <!-- Cerramos el contenedor con la informacion de la pizza 4 quesos -->
             </div>

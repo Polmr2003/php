@@ -1,3 +1,96 @@
+/* ------------------------------------------------- Menú ----------------------------------------------------------------------- */
+
+/*Logotipo*/
+.logo {
+    height: 50px;
+    width: 76%;
+    margin: auto;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+/*Menú */
+#menu{
+    display: flex; 
+    justify-content: flex-end; /* Alienación a la izquierda*/
+    width: 1000px;
+    height: 50px;
+}
+
+/*--> Menú: elementos lista */
+#menu ul, li {
+    list-style-type: none; /*quita el simbolo del listado*/
+    margin: 0;
+    padding: 0; /*para que desaparezcan los espacios de lista*/
+    float: left;
+}
+
+/*--> Menú: Texto */
+#menu a{
+    color: black; /*color fuente*/
+    text-decoration: none; /*quitar subrayado de link*/
+    display: block; /*convertir en bloque para hacer margenes*/
+    padding: 14px 20px; /*margen inferior-superior y lateral*/
+}
+
+#menu a:hover{/*al pasar el ratón por el texto*/
+    color:#E47D2B;
+}
+
+
+/* ------------------------------------------------- Home ----------------------------------------------------------------------- */
+
+/* Titulo página */
+h2 {
+    color: #E47D2B;
+    font-family: Poppins;
+    font-size: 96px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 94.8%; /* 91.008px */
+    letter-spacing: -3.36px;
+}
+
+/* Subtítulo página */
+h3 {
+    color: #2F2F2F;
+    font-family: Poppins;
+    font-size: 30px;
+    font-style: normal;
+    line-height: 94.8%; /* 28.44px */
+}
+
+
+/* Boton de ordenar ahora */
+.my_BtnHome {
+    /* Tamaño (widht: anchura) (height: altura)*/
+    width: 188px;
+    height: 60px;
+
+    /* Color... */
+    border-radius: 84px;
+    background: #2F2F2F;
+    box-shadow: 0px 20px 32px -8px rgba(0, 0, 0, 0.20);
+}
+
+/* Text del boton */
+.txt_my_BtnHome {
+    /* Tamaño (font-size: tamaño de letra)*/
+    font-size: 20px;
+
+    /* Color... */
+    color: #F4ECE1;
+    font-family: Poppins;
+    font-style: normal;
+    line-height: 94.8%;
+    /* 18.96px */
+}
+
+
+
+
+
 /* ------------------------------------------------- Contenido (Body) de el html ----------------------------------------------------------------------- */
 /* body donde aparece todo */
 body{
@@ -134,3 +227,5 @@ h5 {
     line-height: 94.8%;
     /* 18.96px */
 }
+
+

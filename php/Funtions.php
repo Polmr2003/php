@@ -5,12 +5,13 @@
 function myHeader(){
     $head = <<<CABECERA
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="es">
     
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Tirar dado</title>
+        <title>Pizza planet</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     </head>
     CABECERA;
 
@@ -18,20 +19,18 @@ function myHeader(){
 }
 
 function myMenu(){
-    
     $menu = <<<MENU
-    <div class="menu">
-       <ul>
-           <li>
-           <a href="home.php"> Home </a>
-           </li>
-           <li>
-               <a href="juego1.php">Juego1 </a>
-           </li>
-           <li>Juego2</li>
-           <li>Juego3</li>
-       </ul>
+    <nav id="menu">
+    <div class="logo">
+    <img src="../images/logoPizzaplanet.png" width="70" height="70">
     </div>
+    <ul>
+        <li><a href="Home.php">Home</a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="Pedido.php">Carta</a></li>
+    </ul>
+    </nav>
+    <br>
     MENU;
 
     echo $menu;
