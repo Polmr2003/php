@@ -1,7 +1,7 @@
 <?php
 // importamos las classes con las funciones
 require_once 'Funtions.php';
-require_once 'index.php';
+require_once 'data.php';
 
 myMenu();
 

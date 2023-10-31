@@ -25,7 +25,7 @@ function myMenu(){
     <img src="../images/logoPizzaplanet.png" width="70" height="70">
     </div>
     <ul>
-        <li><a href="Home.php">Home</a></li>
+        <li><a href="index.php">Home</a></li>
         <li><a href="Login.php">Login</a></li>
     </ul>
     </nav>
