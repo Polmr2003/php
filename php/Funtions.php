@@ -27,13 +27,26 @@ function myMenu(){
     <ul>
         <li><a href="Home.php">Home</a></li>
         <li><a href="Login.php">Login</a></li>
-        <li><a href="Pedido.php">Carta</a></li>
     </ul>
     </nav>
     <br>
     MENU;
 
     echo $menu;
+}
+
+
+/**
+ * Limpiar los datos introducidos por el usuario
+ * @param $data - datos del formulario
+ * @return $data - dato limpio
+ */
+function limpiarDatosFormulario($data)
+{
+    $data = trim($data); //eliminar los caracteres innecesarios (espacio adicional, tabulación, nueva línea)
+    $data = stripslashes($data); //eliminar las barras invertidas (\)
+    $data = htmlspecialchars($data); //evita que el usuario ponga codigo html, convierte la cadena que ponga el usuario en html
+    return $data;
 }
 
 /**
@@ -58,5 +71,3 @@ function remove_var_session(){
     // remove all session variables
     return session_unset();
 };
-
-?>

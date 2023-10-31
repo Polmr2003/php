@@ -1,24 +1,9 @@
 <?php
 // importamos las classes con las funciones
 require_once 'Funtions.php';
+require_once 'index.php';
 
 myMenu();
-
-
-//variables
-$_POST['nombre'] = "";
-$_POST['apellidos'] = "";
-$_POST['telefono'] = "";
-$_POST['direccion'] = "";
-$_POST['correo'] = "";
-
-$nombre;
-$apellidos;
-$telefono;
-$direccion;
-$correo_electronico;
-
-
 
 /* ------------------------------------------- Comprobaciones de las variables---------------------------------------------------------------- */
 if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['direccion'], $_POST['correo'])) {
@@ -30,20 +15,6 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
         $telefono = limpiarDatosFormulario($_POST["telefono"]);
         $direccion = limpiarDatosFormulario($_POST["direccion"]);
         $correo_electronico = limpiarDatosFormulario($_POST["correo"]);
-        
-    }
-
-    /**
-     * Limpiar los datos introducidos por el usuario
-     * @param $data - datos del formulario
-     * @return $data - dato limpio
-     */
-    function limpiarDatosFormulario($data)
-    {
-        $data = trim($data); //eliminar los caracteres innecesarios (espacio adicional, tabulación, nueva línea)
-        $data = stripslashes($data); //eliminar las barras invertidas (\)
-        $data = htmlspecialchars($data); //evita que el usuario ponga codigo html, convierte la cadena que ponga el usuario en html
-        return $data;
     }
 
     // ------------------- Validar los datos -------------------

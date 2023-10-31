@@ -22,10 +22,6 @@ myMenu();
     <img src="../images/pizza3.png" width="650px" height="500px" style="float:left;">
     <h2>Pizza planet</h2>
     <h3>Un planeta lleno de sabor</h3>
-    <button class="my_BtnHome">
-            <p class="txt_my_BtnHome">Ordenar ahora</p>
-    </button>
-
 
 </body>
 
