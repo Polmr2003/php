@@ -3,6 +3,10 @@
 require_once 'Funtions.php';
 require_once 'data.php';
 
+//
+require_once 'session.php';
+
+//
 myMenu();
 
 /* ------------------------------------------- Comprobaciones de las variables---------------------------------------------------------------- */
@@ -90,6 +94,15 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
 </head>
 
 <body>
+
+    <nav id="menu">
+        <ul>
+            <li>
+                <a href="logout.php">Logout</a></p>
+            </li>
+        </ul>
+    </nav>
+
     <!-- Formulario -->
     <form action="./Ticket.php" method="post">
         <!-- Datos usuario -->

@@ -2,7 +2,8 @@
 //_______________funciones______________________________
 //------------------------------------------------------
 
-function myHeader(){
+function myHeader()
+{
     $head = <<<CABECERA
     <!DOCTYPE html>
     <html lang="es">
@@ -18,7 +19,8 @@ function myHeader(){
     echo $head;
 }
 
-function myMenu(){
+function myMenu()
+{
     $menu = <<<MENU
     <nav id="menu">
     <div class="logo">
@@ -53,21 +55,25 @@ function limpiarDatosFormulario($data)
  * $someting - es la frase que queremos mostrar
  * return - con el return retornamos la frase con \n para que nos haga un salto de linea
  */
-function println($something): string{
+function println($something): string
+{
     return "$something\n";
 };
 
 
-function start_session(){
+function start_session()
+{
     return session_start();
 };
 
-function remove_session(){
+function remove_session()
+{
     // destroy the session
     return session_destroy();
 };
 
-function remove_var_session(){
+function remove_var_session()
+{
     // remove all session variables
     return session_unset();
 };
