@@ -171,53 +171,53 @@
     <!-- Mostramos los productos seleccionados i el precio total -->
     <hr>
     <h3>Productos Seleccionados:</h3>
-    <ul>
+    <ul class='lista_pedidos'>
         <?php
 
         /*------------------------ Pizzas ------------------------ */
 
         // Si an pedido una pizza margarita mostramos, la cantidad i el tamaño
         if (isset($_POST["num_pizzas_mar"]) && isset($_POST["tamaño_pizza_mar"]) && !($_POST["num_pizzas_mar"] <= 0)) {
-            echo "<li> $num_pizzas_mar Pizza margarita $tamaño_pizza_mar</li>";
+            echo "<li class='lista_pedidos'> $num_pizzas_mar Pizza margarita $tamaño_pizza_mar</li>";
         }
 
         // Si an pedido una pizza carbonara mostramos, la cantidad i el tamaño
         if (isset($_POST["num_pizzas_car"]) && isset($_POST["tamaño_pizza_car"]) && !($_POST["num_pizzas_car"] <= 0)) {
-            echo "<li> $num_pizzas_car Pizza carbonara $tamaño_pizza_car</li>";
+            echo "<li class='lista_pedidos'> $num_pizzas_car Pizza carbonara $tamaño_pizza_car</li>";
         }
 
         // Si an pedido una pizza barbacoa mostramos, la cantidad i el tamaño
         if (isset($_POST["num_pizzas_bar"]) && isset($_POST["tamaño_pizza_bar"]) && !($_POST["num_pizzas_bar"] <= 0)) {
-            echo "<li> $num_pizzas_bar Pizza barbacoa $tamaño_pizza_bar</li>";
+            echo "<li class='lista_pedidos'> $num_pizzas_bar Pizza barbacoa $tamaño_pizza_bar</li>";
         }
 
         // Si an pedido una pizza 4 quesos mostramos, la cantidad i el tamaño
         if (isset($_POST["num_pizzas_que"]) && isset($_POST["tamaño_pizza_que"]) && !($_POST["num_pizzas_que"] <= 0)) {
-            echo "<li> $num_pizzas_que Pizza 4 quesos $tamaño_pizza_que</li>";
+            echo "<li class='lista_pedidos'> $num_pizzas_que Pizza 4 quesos $tamaño_pizza_que</li>";
         }
 
         /*------------------------ Ofertas ------------------------ */
 
         // Si an pedido una pizza carbonara mostramos, la cantidad i el tamaño
         if (isset($_POST["Bebida_+_pizza"])) {
-            echo "<li>Pizza Carbonara (familiar) + Bebida</li>";
+            echo "<li class='lista_pedidos'>Pizza Carbonara (familiar) + Bebida</li>";
         }
 
         // Si an pedido una pizza barbacoa mostramos, la cantidad i el tamaño
         if (isset($_POST["pizza_+_pizza"])) {
-            echo "<li>Pizza Margarita (individual) + Pizza Barbacoa (individual)</li>";
+            echo "<li class='lista_pedidos'>Pizza Margarita (individual) + Pizza Barbacoa (individual)</li>";
         }
 
         // Si an pedido una pizza 4 quesos mostramos, la cantidad i el tamaño
         if (isset($_POST["media_+_normal"])) {
-            echo "<li>Pizza 4 Quesos (mediana) + Pizza Carbonara (individual)</li>";
+            echo "<li class='lista_pedidos'>Pizza 4 Quesos (mediana) + Pizza Carbonara (individual)</li>";
         }
 
         ?>
     </ul>
 
     <!-- ------------------------------------------- Mostrar el precio total ---------------------------------------------------------------- -->
-    <p><strong>Importe Total:</strong> <?php echo $total; ?> €</p>
+    <br><p><strong>Importe Total:</strong> <?php echo $total; ?> €</p>
     <p><strong>IVA (21%):</strong> <?php echo $iva; ?> €</p>
     <p><strong>Total con IVA:</strong> <?php echo $total_con_iva; ?> €</p>
 </body>

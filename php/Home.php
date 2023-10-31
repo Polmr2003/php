@@ -19,7 +19,7 @@ myMenu();
 
 <body>
 
-    <img src="../images/pizza3.png" width="650px" height="500px" style="float:right;">
+    <img src="../images/pizza3.png" width="650px" height="500px" style="float:left;">
     <h2>Pizza planet</h2>
     <h3>Un planeta lleno de sabor</h3>
     <button class="my_BtnHome">
