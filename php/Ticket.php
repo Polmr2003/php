@@ -217,7 +217,7 @@
     </ul>
 
     <!-- ------------------------------------------- Mostrar el precio total ---------------------------------------------------------------- -->
-    <br><p><strong>Importe Total:</strong> <?php echo $total; ?> €</p>
+    <p><strong>Importe Total:</strong> <?php echo $total; ?> €</p>
     <p><strong>IVA (21%):</strong> <?php echo $iva; ?> €</p>
     <p><strong>Total con IVA:</strong> <?php echo $total_con_iva; ?> €</p>
 </body>
