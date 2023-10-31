@@ -22,14 +22,29 @@ $correo_electronico;
 
 /* ------------------------------------------- Comprobaciones de las variables---------------------------------------------------------------- */
 if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['direccion'], $_POST['correo'])) {
-    // Miramos que no tenga contenido html en los campos de el usuario
-    $nombre = htmlspecialchars($_POST['nombre']); // htmlspecialchars evita que el usuario ponga codigo html, convierte la cadena que ponga el usuario en html
-    $apellidos = htmlspecialchars($_POST['apellidos']); // htmlspecialchars evita que el usuario ponga codigo html, convierte la cadena que ponga el usuario en html
-    $telefono = htmlspecialchars($_POST['telefono']); // htmlspecialchars evita que el usuario ponga codigo html, convierte la cadena que ponga el usuario en html
-    $direccion = htmlspecialchars($_POST['direccion']); // htmlspecialchars evita que el usuario ponga codigo html, convierte la cadena que ponga el usuario en html
-    $correo_electronico = htmlspecialchars($_POST['direccion']); // htmlspecialchars evita que el usuario ponga codigo html, convierte la cadena que ponga el usuario en html
+    //Si los datos introducidos vienen desde el método POST
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // ------------------- Limpiar los datos -------------------
+        $nombre = limpiarDatosFormulario($_POST["nombre"]);
+        $apellidos = limpiarDatosFormulario($_POST["apellidos"]);
+        $telefono = limpiarDatosFormulario($_POST["telefono"]);
+        $direccion = limpiarDatosFormulario($_POST["direccion"]);
+        $correo_electronico = limpiarDatosFormulario($_POST["correo"]);
+        
+    }
 
-
+    /**
+     * Limpiar los datos introducidos por el usuario
+     * @param $data - datos del formulario
+     * @return $data - dato limpio
+     */
+    function limpiarDatosFormulario($data)
+    {
+        $data = trim($data); //eliminar los caracteres innecesarios (espacio adicional, tabulación, nueva línea)
+        $data = stripslashes($data); //eliminar las barras invertidas (\)
+        $data = htmlspecialchars($data); //evita que el usuario ponga codigo html, convierte la cadena que ponga el usuario en html
+        return $data;
+    }
 
     // ------------------- Validar los datos -------------------
     /**
@@ -76,7 +91,7 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
                         // get the error message for a specific field and rule if exists
                         // otherwise get the error message from the $validation_errors
                         $errors[$field] = sprintf(
-                           // $messages[$field][$rule_name] ?? $validation_errors[$rule_name],
+                            // $messages[$field][$rule_name] ?? $validation_errors[$rule_name],
                             $field,
                             ...$params
                         );
@@ -261,7 +276,7 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
                 <h4>Pizza barbacoa</h4>
 
                 <!-- Imagen de la pizza -->
-                <img src="../images/barbacoa.jpg" width="150px" height="110px">   
+                <img src="../images/barbacoa.jpg" width="150px" height="110px">
 
                 <!-- Descripcion -->
                 <p>ingredientes:</p>
@@ -269,7 +284,7 @@ if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['dir
                     <li>- pollo</li><br>
                     <li>- bacon</li><br>
                     <li>- carne vacuno</li><br>
-                </ul>             
+                </ul>
 
                 <!-- Formulario -->
                 <h5>precio 13€</h5>

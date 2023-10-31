@@ -26,7 +26,7 @@ function myMenu(){
     </div>
     <ul>
         <li><a href="Home.php">Home</a></li>
-        <li><a href="#">Login</a></li>
+        <li><a href="Login.php">Login</a></li>
         <li><a href="Pedido.php">Carta</a></li>
     </ul>
     </nav>

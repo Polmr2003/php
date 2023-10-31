@@ -3,6 +3,14 @@
 //importamos el pedido
 require_once 'Pedido.php';
 
+//
+$datos_login = [
+    ['usuario1'=> 'pass1'],
+    ['usuario2'=> 'pass2'],
+    ['usuario3'=> 'pass3']
+];
+
+
 //Datos del formulario
 $datos_formulario = [
     'nombre' => $_POST["nombre"],
