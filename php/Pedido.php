@@ -3,11 +3,14 @@
 require_once 'Funtions.php';
 require_once 'data.php';
 
-//
-require_once 'session.php';
-
-//
+// funciones
 myMenu();
+session_start();
+
+// si la variable de session login no esta creada redirigimos a la paguina de login
+if (!isset($_SESSION['login'])) {
+    header('Location: Login.php');
+}
 
 /* ------------------------------------------- Comprobaciones de las variables---------------------------------------------------------------- */
 if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['direccion'], $_POST['correo'])) {

@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+// si la variable de session login no esta creada redirigimos a la paguina de login
+if (!isset($_SESSION['login'])) {
+    header('Location: Login.php');
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

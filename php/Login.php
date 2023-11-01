@@ -4,7 +4,9 @@ require_once 'Funtions.php';
 require_once 'data.php';
 //require_once 'Pedido.php';
 
+//funciones
 myMenu();
+session_start();
 
 ?>
 
@@ -61,9 +63,14 @@ myMenu();
                 // Si exite (la key) el usuario en el array de datos con el login
                 if (in_array($contraseña_usu, $datos_login)) {
                     // Si con la key con el nombre de el usuario exite el valor con la contraseña que halla puesto el usuario
+                    
+                    // creamos la variable de session login para saber si esta logeado el usuario
+                    $_SESSION['login'] = "yes";
+
                     header('Location: Pedido.php'); // redirigimos a la carta para pedir
                 }
             } else {
+                remove_var_session();
                 echo "<h1> NO Existe este usuario</h1>";
             }
         }
