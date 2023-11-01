@@ -15,7 +15,7 @@ if (!isset($_SESSION['login'])) {
 /* ------------------------------------------- Comprobaciones de las variables---------------------------------------------------------------- */
 if (isset($_POST['nombre'], $_POST['apellidos'], $_POST['telefono'], $_POST['direccion'], $_POST['correo'])) {
     //Si los datos introducidos vienen desde el método POST
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") { 
         // ------------------- Limpiar los datos -------------------
         $nombre = limpiarDatosFormulario($_POST["nombre"]);
         $apellidos = limpiarDatosFormulario($_POST["apellidos"]);

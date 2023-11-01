@@ -217,26 +217,37 @@ h5 {
 }
 
 /* ------------------------------------------------- Login ----------------------------------------------------------------------- */
+/* Texto que indica que tiene que introducir el usuario */
 
 .div_login {
     text-align: center;
 }
 
-/* Texto que indica que tiene que introducir el usuario */
-.input_usu_login {
-    /* Color */
+.info_usu_login {
     color: #000;
 
-    
     /* Poppins/Body - 16px */
     font-family: Poppins;
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 400;
     line-height: 175%;
     /* 28px */
     letter-spacing: 0.32px;
+}
 
-    /* Alineacion */
-    text-align: center;
+/* Input donde pone la informacion el usuario */
+.input_usu_login {
+    /* Tamaño (display: como se muestra, centrado..) (widht: anchura) (height: altura) */
+    width: 170px;
+    height: 30px;
+    padding: 8px 16px;
+    align-items: center;
+    gap: 227px;
+    border-radius: 24px;
+
+    /* Color... */
+    border: 1px solid #E47D2B;
+    background: var(--FFFFFF-Bg-1, #FFF);
+
 }

@@ -29,16 +29,16 @@ session_start();
             <h1>Login</h1>
 
             <!-- Nombre del usuario -->
-            <label for="nombre_usu" class="info_usu">Nombre de usuario:</label>
+            <label for="nombre_usu" class="info_usu_login">Nombre de usuario:</label><br>
             <input type="text" class="input_usu_login" id="nombre_usu" name="nombre_usu" required>
             <!-- Mostrar si las creedenciales son válidas de nombre-->
             <span style="color:red" class="Error_nom_usu" id="validacion_nombre"></span><br>
 
             <!-- Apellidos del usuario -->
-            <label for="contraseña_usu" class="info_usu">Contraseña:</label>
+            <label for="contraseña_usu" class="info_usu_login">Contraseña:</label><br>
             <input type="password" class="input_usu_login" id="contraseña_usu" name="contraseña_usu" required>
             <!-- Mostrar si las creedenciales son válidas de apellidos-->
-            <span style="color:red" class="form-text" id="validacion_Apellidos"></span><br>
+            <span style="color:red" class="form-text" id="validacion_Apellidos"></span><br><br>
 
 
             <!-- Boton -->
